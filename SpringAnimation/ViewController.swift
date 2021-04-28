@@ -46,8 +46,8 @@ class ViewController: UIViewController {
                              "zoomOut",
                              "flash"]
     private  var value = ""
-    private  var valueFalse = "slideDown"
-    private var valueTrue = "pop"
+    private  var valueAnimationFalse = "slideDown"
+    private var valueAnimationTrue = "pop"
     private var valueTougle = true
     
     override func viewDidLoad() {
@@ -55,6 +55,7 @@ class ViewController: UIViewController {
         
         textButton.setTitle("Run", for: .normal)
     }
+ 
     
     
     @IBAction func runSpringAnimation(_ sender: SpringButton) {
@@ -62,17 +63,17 @@ class ViewController: UIViewController {
         
         if valueTougle {
             valueTougle = false
-            valueFalse = String(animation.randomElement() ?? "slideDown")
-            value = valueTrue
-            textButton.setTitle("Run: \(valueFalse)", for: .normal)
+            valueAnimationFalse = String(animation.randomElement() ?? "slideDown")
+            value = valueAnimationTrue
+            textButton.setTitle("Run: \(valueAnimationFalse)", for: .normal)
             
             getData()
             
         } else {
             valueTougle = true
-            valueTrue = String(animation.randomElement() ?? "slideDown")
-            value = valueFalse
-            textButton.setTitle("Run: \(valueTrue)", for: .normal)
+            valueAnimationTrue = String(animation.randomElement() ?? "slideDown")
+            value = valueAnimationFalse
+            textButton.setTitle("Run: \(valueAnimationTrue)", for: .normal)
             getData()
         }
         
