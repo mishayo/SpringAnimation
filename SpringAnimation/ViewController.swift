@@ -11,6 +11,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var springAnimationView: SpringView!
     @IBOutlet weak var springAnimationLabel: UILabel!
+    @IBOutlet weak var textButton: SpringButton!
+    
     
     private let curve = ["spring",
                          "linear",
@@ -43,17 +45,35 @@ class ViewController: UIViewController {
                              "zoomIn",
                              "zoomOut",
                              "flash"]
+    private  var value = ""
+    private  var valueFalse = "slideDown"
+    private var valueTrue = "pop"
+    private var valueTougle = true
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        textButton.setTitle("Run", for: .normal)
+    }
     
     
     @IBAction func runSpringAnimation(_ sender: SpringButton) {
+        textButton.setTitle("Run Spring Animation", for: .normal)
         
-        let valueTougle = true
         if valueTougle {
             valueTougle = false
-            animationTrue()
+            valueFalse = String(animation.randomElement() ?? "slideDown")
+            value = valueTrue
+            textButton.setTitle("Run: \(valueFalse)", for: .normal)
+            
+            getData()
+            
         } else {
-            animationFalse()
+            valueTougle = true
+            valueTrue = String(animation.randomElement() ?? "slideDown")
+            value = valueFalse
+            textButton.setTitle("Run: \(valueTrue)", for: .normal)
+            getData()
         }
         
     }
@@ -63,10 +83,10 @@ class ViewController: UIViewController {
     
     
     
-        
+    
     private func getData() {
         
-        let currentAnimation =  String(animation.randomElement() ?? "slideDown")
+        let currentAnimation =  value
         springAnimationView.animation = currentAnimation
         
         let currentCurve = String(curve.randomElement() ?? "spring")
@@ -84,22 +104,20 @@ class ViewController: UIViewController {
         let currentDelay = CGFloat.random(in: 0...2)
         springAnimationView.delay = currentDelay
         
-        let currentRotate = CGFloat.random(in: 0...0.2)
-        springAnimationView.rotate = currentRotate
+        let currentRepeatCount = Float(Int.random(in: 0...2))
+        springAnimationView.repeatCount = currentRepeatCount
         
-        
-       /*  getLabel(animation: currentAnimation, curve: currentCurve,
+        getLabel(animation: currentAnimation, curve: currentCurve,
                  force: currentForce, duration: currentDuration,
                  velocity: currentVelocity, delay: currentDelay,
-                 rotate: currentRotate)
-        springAnimationView.animate()  */
-        
+                 repeatCount: currentRepeatCount)
+        springAnimationView.animate()
     }
     
     
     
     
-    private func getLabel(animation: String, curve: String, force: CGFloat, duration: CGFloat, velocity: CGFloat, delay: CGFloat, rotate: CGFloat) {
+    private func getLabel(animation: String, curve: String, force: CGFloat, duration: CGFloat, velocity: CGFloat, delay: CGFloat, repeatCount: Float) {
         springAnimationLabel.text = """
 animation: \(animation)
 curve: \(curve)
@@ -107,7 +125,7 @@ force \(String(format: "%.2f", force))
 duration \(String(format: "%.2f", duration))
 velocity \(String(format: "%.2f", velocity))
 delay \(String(format: "%.2f", delay))
-rotate \(String(format: "%.2f", rotate))
+repeatCount \(repeatCount)
 """
     }
     

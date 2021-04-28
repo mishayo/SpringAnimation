@@ -29,7 +29,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="runSpringAnimation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ggX-9x-eaU"/>
+                                    <action selector="runSpringAnimation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bSB-Wd-Xd7"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z49-y2-4FS" customClass="SpringView" customModule="Spring">
@@ -72,8 +72,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="springAnimationLabel" destination="Kvt-ev-sEa" id="0X7-M5-FsP"/>
-                        <outlet property="springAnimationView" destination="z49-y2-4FS" id="LWj-y7-6bg"/>
+                        <outlet property="springAnimationLabel" destination="Kvt-ev-sEa" id="rGe-yc-fzu"/>
+                        <outlet property="springAnimationView" destination="z49-y2-4FS" id="45k-Nl-w90"/>
+                        <outlet property="textButton" destination="qd3-tt-WBU" id="gYC-IB-EEO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
